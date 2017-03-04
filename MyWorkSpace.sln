@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyWorkSpace", "OriFiler\MyWorkSpace.csproj", "{2D2BA953-B311-45F2-A1A1-74B41A2B1F76}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2D2BA953-B311-45F2-A1A1-74B41A2B1F76}.Debug|x86.ActiveCfg = Debug|x86
+		{2D2BA953-B311-45F2-A1A1-74B41A2B1F76}.Debug|x86.Build.0 = Debug|x86
+		{2D2BA953-B311-45F2-A1A1-74B41A2B1F76}.Release|x86.ActiveCfg = Release|x86
+		{2D2BA953-B311-45F2-A1A1-74B41A2B1F76}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
