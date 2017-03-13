@@ -204,6 +204,13 @@ namespace MyWorkSpace
             }
         }
 
+
+        public void 色設定(Color 背景色)
+        {
+            this.BackColor = 背景色;
+            menuStrip1.BackColor = 背景色;
+        }
+
         // -----------------------------------------------------------------【Private Method】
 
         #region 初期化
@@ -392,5 +399,17 @@ namespace MyWorkSpace
             AddTab();
             this.Show();
         }
+
+        private void ウインドウ色変更ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ColorDialog a = new ColorDialog();
+            a.FullOpen = true;
+            a.Color = this.BackColor;
+            if (a.ShowDialog() == DialogResult.OK)
+            {
+                色設定(a.Color);
+            }
+        }
+
     }
 }

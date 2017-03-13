@@ -40,6 +40,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.ウインドウを閉じるToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new MyWorkSpace.TabControlEX();
+            this.ウインドウ色変更ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,6 +81,7 @@
             // 
             this.ファイルToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ウインドウ名を変更するToolStripMenuItem,
+            this.ウインドウ色変更ToolStripMenuItem,
             this.toolStripSeparator1,
             this.ウインドウを閉じるToolStripMenuItem});
             this.ファイルToolStripMenuItem.Name = "ファイルToolStripMenuItem";
@@ -119,6 +121,13 @@
             this.tabControl1.TabIndex = 6;
             this.tabControl1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tabControl1_MouseDown);
             // 
+            // ウインドウ色変更ToolStripMenuItem
+            // 
+            this.ウインドウ色変更ToolStripMenuItem.Name = "ウインドウ色変更ToolStripMenuItem";
+            this.ウインドウ色変更ToolStripMenuItem.Size = new System.Drawing.Size(250, 30);
+            this.ウインドウ色変更ToolStripMenuItem.Text = "ウインドウ色変更";
+            this.ウインドウ色変更ToolStripMenuItem.Click += new System.EventHandler(this.ウインドウ色変更ToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
@@ -151,6 +160,7 @@
         private System.Windows.Forms.ToolStripMenuItem ウインドウ名を変更するToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem ウインドウを閉じるToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ウインドウ色変更ToolStripMenuItem;
     }
 }
 

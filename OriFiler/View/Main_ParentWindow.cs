@@ -164,7 +164,7 @@ namespace MyWorkSpace
 
         private void ShowNewForm(object sender, EventArgs e)
         {
-            CreateWindow(string.Empty, string.Empty, string.Empty);
+            CreateWindow(string.Empty, string.Empty, string.Empty, getデフォルト背景色());
         }
 
         #endregion
@@ -175,7 +175,7 @@ namespace MyWorkSpace
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                CreateWindow(string.Empty, string.Empty, openFileDialog1.FileName);
+                CreateWindow(string.Empty, string.Empty, openFileDialog1.FileName, getデフォルト背景色());
             }
         }
 
@@ -374,7 +374,7 @@ namespace MyWorkSpace
 
         #region ウインドウ作成
 
-        private void CreateWindow(string BeforeWindowNo, string DisplayText, string TabListFilePath)
+        private void CreateWindow(string BeforeWindowNo, string DisplayText, string TabListFilePath, Color 背景色)
         {
             Form3 FolderNameWindow = new Form3();
             string FormText = DisplayText;
@@ -399,6 +399,7 @@ namespace MyWorkSpace
                 m_Form.Last().MdiParent = this;
                 m_Form.Last().Text = FormText;
                 m_Form.Last().Name = childFormNumber.ToString();
+                m_Form.Last().色設定(背景色);
                 m_Form.Last().Show();
                 //m_Form.Last().ChangeFont(fontDialog1.Font, fontDialog1.Color);
                 //m_Form.Last().isInit = false;
@@ -451,7 +452,7 @@ namespace MyWorkSpace
                     {
                         string TabListPath = strPath + "_" + tmpForm.Name + ".tab";
                         ((Form1)tmpForm).SaveTabList(TabListPath);
-                        stwriter.WriteLine(tmpForm.Name + "\t" + tmpForm.Text + "\t" + TabListPath);
+                        stwriter.WriteLine(tmpForm.Name + "\t" + tmpForm.Text + "\t" + TabListPath + "\t" + tmpForm.BackColor.ToArgb().ToString());
                     }
                 }
             }
@@ -471,10 +472,21 @@ namespace MyWorkSpace
                     {
                         string tmp = stReader.ReadLine();
                         string[] strArray = tmp.Split('\t');
-                        CreateWindow(strArray[0], strArray[1], strArray[2]);
+
+                        var 背景色 = getデフォルト背景色();
+                        if(strArray.Length > 3)
+                        {
+                            背景色 = Color.FromArgb(Convert.ToInt32(strArray[3]));
+                        }
+                        CreateWindow(strArray[0], strArray[1], strArray[2], 背景色);
                     }
                 }
             }
+        }
+
+        private Color getデフォルト背景色()
+        {
+            return Color.FromArgb(239, 239, 247);
         }
 
         #endregion
