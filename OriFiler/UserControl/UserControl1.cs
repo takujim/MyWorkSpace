@@ -302,6 +302,9 @@ namespace MyWorkSpace
         {
             get
             {
+                // ルートがドライブだと、この実装ダメ。
+                //return Path.Combine(p_RootAddress, stopBeautifulShow(txtSelectTreeNode.Text).Replace(C_Root, ""));
+
                 var rootAddress = p_RootAddress;
                 if (rootAddress.Last().Equals(Convert.ToChar(@"\")))
                 {
