@@ -27,6 +27,8 @@ namespace MyWorkSpace
         private List<Form1> m_Form = null;
         private Msio.SplashWindow m_SplashWindow = null;
 
+        private bool 初期化完了フラグ = false;
+
         /// <summary>
         /// メッセージ表示操作オブジェクト
         /// </summary>
@@ -74,6 +76,8 @@ namespace MyWorkSpace
 
             // ワークスペース作成
             OpenWorkSpace(Program.DATADIR + "CurrentForm.wsp");
+
+            初期化完了フラグ = true;
         }
 
         /// <summary>
@@ -530,6 +534,11 @@ namespace MyWorkSpace
         private void MDIParent1_Activated(object sender, EventArgs e)
         {
             m_MessageManager.ToMDIMsg(m_CopyPasteMoveManager.GetTargetItemString());
+
+            if(初期化完了フラグ && this.ActiveMdiChild != null)
+            {
+                ((Form1)this.ActiveMdiChild).updateListView();
+            }
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)

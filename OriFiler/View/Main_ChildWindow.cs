@@ -196,6 +196,14 @@ namespace MyWorkSpace
 
         #endregion
 
+        public void updateListView()
+        {
+            if(tabControl1.TabCount > 0)
+            {
+                GetTargetUserControl(tabControl1.SelectedTab).ListViewUpdate();
+            }
+        }
+
         // -----------------------------------------------------------------【Private Method】
 
         #region 初期化
@@ -384,7 +392,5 @@ namespace MyWorkSpace
             AddTab();
             this.Show();
         }
-
-
     }
 }

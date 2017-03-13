@@ -131,6 +131,8 @@ namespace MyWorkSpace
 
             treeViewMain.ImageList = imgList;
             treeViewMain.HideSelection = true;
+
+            treeViewMain.TreeViewNodeSorter = new NodeSorter();
         }
 
         enum listViewColumn
@@ -300,7 +302,12 @@ namespace MyWorkSpace
         {
             get
             {
-                return stopBeautifulShow(txtSelectTreeNode.Text).Replace(C_Root, p_RootAddress);
+                var rootAddress = p_RootAddress;
+                if (rootAddress.Last().Equals(Convert.ToChar(@"\")))
+                {
+                    rootAddress = rootAddress.Substring(0, p_RootAddress.Length - 1);
+                }
+                return stopBeautifulShow(txtSelectTreeNode.Text).Replace(C_Root, rootAddress);
             }
         }
 
@@ -548,10 +555,33 @@ namespace MyWorkSpace
 
         public void treeviewUpdate()
         {
+            treeViewMain.BeginUpdate();
+
             if (treeViewMain.SelectedNode != null)
             {
-                treeViewMain.SelectedNode.Collapse();
-                treeViewMain.SelectedNode.Expand();
+                var selectedNode = treeViewMain.SelectedNode;
+                selectedNode.Collapse();
+                selectedNode.Expand();
+            }
+
+            treeViewMain.EndUpdate();
+        }
+
+        public class NodeSorter : System.Collections.IComparer
+        {
+            // Compare the length of the strings, or the strings
+            // themselves, if they are the same length.
+            public int Compare(object x, object y)
+            {
+                TreeNode tx = x as TreeNode;
+                TreeNode ty = y as TreeNode;
+
+                // Compare the length of the strings, returning the difference.
+                //if (tx.Text.Length != ty.Text.Length)
+                //    return tx.Text.Length - ty.Text.Length;
+
+                // If they are the same length, call Compare.
+                return string.Compare(tx.Text, ty.Text);
             }
         }
 
@@ -949,6 +979,8 @@ namespace MyWorkSpace
             }
 
             FolderNameWindow.Close();
+
+            treeviewUpdate();
         }
 
         #endregion
@@ -1247,7 +1279,7 @@ namespace MyWorkSpace
                     {
                         AddSingleNode(
                             treeViewMain.SelectedNode.Nodes,
-                            Path.Combine(p_SelectAddress,Path.GetFileName(Path.GetDirectoryName(dir))));
+                            Path.Combine(p_SelectAddress, Path.GetFileName(Path.GetDirectoryName(dir))));
                     }
                 }
             }
@@ -1557,39 +1589,44 @@ namespace MyWorkSpace
 
         private void DeleteTargetItem(List<string> colTarget)
         {
-            if (treeViewMain.ContainsFocus)
+            if (DialogResult.OK == MessageBox.Show("選択されたデータをすべて削除します。よろしいですか？", "削除確認", MessageBoxButtons.OKCancel))
             {
-                foreach (string strTarget in colTarget)
+
+                if (treeViewMain.ContainsFocus)
                 {
-                    try
+                    foreach (string strTarget in colTarget)
                     {
-                        // 普通のエクスプローラのように一括で処理したいが一個ずつやるメソッドしかない。。。
-                        Microsoft.VisualBasic.FileIO.FileSystem.DeleteDirectory(GetFileText(strTarget), Microsoft.VisualBasic.FileIO.UIOption.AllDialogs, Microsoft.VisualBasic.FileIO.RecycleOption.SendToRecycleBin, Microsoft.VisualBasic.FileIO.UICancelOption.ThrowException);
-                        TreeNode[] DelNode = treeViewMain.Nodes.Find(GetDirectoryText(strTarget), true);
-                        if (DelNode != null && DelNode.Length != 0)
+                        try
                         {
-                            DelNode.First().Remove();
+                            // 普通のエクスプローラのように一括で処理したいが一個ずつやるメソッドしかない。。。
+                            Microsoft.VisualBasic.FileIO.FileSystem.DeleteDirectory(GetFileText(strTarget), Microsoft.VisualBasic.FileIO.UIOption.AllDialogs, Microsoft.VisualBasic.FileIO.RecycleOption.SendToRecycleBin, Microsoft.VisualBasic.FileIO.UICancelOption.ThrowException);
+                            TreeNode[] DelNode = treeViewMain.Nodes.Find(GetDirectoryText(strTarget), true);
+                            if (DelNode != null && DelNode.Length != 0)
+                            {
+                                DelNode.First().Remove();
+                            }
+                        }
+                        catch (OperationCanceledException)
+                        {
                         }
                     }
-                    catch (OperationCanceledException)
-                    {
-                    }
                 }
-            }
-            else if (listViewMain.ContainsFocus)
-            {
-                foreach (string strTarget in colTarget)
+                else if (listViewMain.ContainsFocus)
                 {
-                    try
+                    foreach (string strTarget in colTarget)
                     {
-                        Microsoft.VisualBasic.FileIO.FileSystem.DeleteFile(strTarget, Microsoft.VisualBasic.FileIO.UIOption.AllDialogs, Microsoft.VisualBasic.FileIO.RecycleOption.SendToRecycleBin, Microsoft.VisualBasic.FileIO.UICancelOption.ThrowException);
-                        ListViewUpdate();
-                    }
-                    catch (OperationCanceledException)
-                    {
+                        try
+                        {
+                            Microsoft.VisualBasic.FileIO.FileSystem.DeleteFile(strTarget, Microsoft.VisualBasic.FileIO.UIOption.AllDialogs, Microsoft.VisualBasic.FileIO.RecycleOption.SendToRecycleBin, Microsoft.VisualBasic.FileIO.UICancelOption.ThrowException);
+                            ListViewUpdate();
+                        }
+                        catch (OperationCanceledException)
+                        {
+                        }
                     }
                 }
             }
+
         }
 
         #endregion
@@ -1598,6 +1635,7 @@ namespace MyWorkSpace
 
         private void StartRename()
         {
+            // ToDo:変更前にフォルダ情報の最新化、変更後に情報の最新化を行う。
             if (treeViewMain.ContainsFocus)
             {
                 treeViewMain.LabelEdit = true;

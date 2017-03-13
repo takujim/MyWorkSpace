@@ -45,8 +45,9 @@
             // 
             // contextMenuTab
             // 
+            this.contextMenuTab.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.contextMenuTab.Name = "contextMenuTab";
-            this.contextMenuTab.Size = new System.Drawing.Size(61, 4);
+            this.contextMenuTab.Size = new System.Drawing.Size(74, 4);
             // 
             // openFileDialog
             // 
@@ -56,7 +57,7 @@
             // 
             this.タブ追加ToolStripMenuItem.Name = "タブ追加ToolStripMenuItem";
             this.タブ追加ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.T)));
-            this.タブ追加ToolStripMenuItem.Size = new System.Drawing.Size(81, 21);
+            this.タブ追加ToolStripMenuItem.Size = new System.Drawing.Size(117, 29);
             this.タブ追加ToolStripMenuItem.Text = "タブ追加(&T)";
             this.タブ追加ToolStripMenuItem.Click += new System.EventHandler(this.タブ追加ToolStripMenuItem_Click);
             // 
@@ -64,12 +65,14 @@
             // 
             this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(247)))));
             this.menuStrip1.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ファイルToolStripMenuItem,
             this.タブ追加ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(632, 25);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(10, 3, 0, 3);
+            this.menuStrip1.Size = new System.Drawing.Size(1053, 35);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -80,25 +83,25 @@
             this.toolStripSeparator1,
             this.ウインドウを閉じるToolStripMenuItem});
             this.ファイルToolStripMenuItem.Name = "ファイルToolStripMenuItem";
-            this.ファイルToolStripMenuItem.Size = new System.Drawing.Size(64, 21);
+            this.ファイルToolStripMenuItem.Size = new System.Drawing.Size(92, 29);
             this.ファイルToolStripMenuItem.Text = "ファイル";
             // 
             // ウインドウ名を変更するToolStripMenuItem
             // 
             this.ウインドウ名を変更するToolStripMenuItem.Name = "ウインドウ名を変更するToolStripMenuItem";
-            this.ウインドウ名を変更するToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.ウインドウ名を変更するToolStripMenuItem.Size = new System.Drawing.Size(250, 30);
             this.ウインドウ名を変更するToolStripMenuItem.Text = "ウインドウ名変更";
             this.ウインドウ名を変更するToolStripMenuItem.Click += new System.EventHandler(this.ウインドウ名を変更するToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(172, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(247, 6);
             // 
             // ウインドウを閉じるToolStripMenuItem
             // 
             this.ウインドウを閉じるToolStripMenuItem.Name = "ウインドウを閉じるToolStripMenuItem";
-            this.ウインドウを閉じるToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.ウインドウを閉じるToolStripMenuItem.Size = new System.Drawing.Size(250, 30);
             this.ウインドウを閉じるToolStripMenuItem.Text = "ウインドウを閉じる";
             this.ウインドウを閉じるToolStripMenuItem.Click += new System.EventHandler(this.ウインドウを閉じるToolStripMenuItem_Click);
             // 
@@ -108,23 +111,25 @@
             this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Location = new System.Drawing.Point(1, 23);
+            this.tabControl1.Location = new System.Drawing.Point(2, 34);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(632, 430);
+            this.tabControl1.Size = new System.Drawing.Size(1053, 645);
             this.tabControl1.TabIndex = 6;
             this.tabControl1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tabControl1_MouseDown);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(247)))));
-            this.ClientSize = new System.Drawing.Size(632, 453);
+            this.ClientSize = new System.Drawing.Size(1053, 680);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.menuStrip1.ResumeLayout(false);
